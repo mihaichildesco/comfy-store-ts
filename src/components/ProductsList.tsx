@@ -1,4 +1,4 @@
-import { formatAsDollars, ProductsResponse } from "@/utils";
+import { formatAsDollars, type ProductsResponse } from "@/utils";
 import { Link, useLoaderData } from "react-router-dom";
 import { Card, CardContent } from "./ui/card";
 
@@ -10,7 +10,6 @@ function ProductsList() {
       {products.map((product) => {
         const { title, price, image, company } = product.attributes;
         const dollarsAmount = formatAsDollars(price);
-
         return (
           <Link key={product.id} to={`/products/${product.id}`}>
             <Card>
@@ -18,7 +17,7 @@ function ProductsList() {
                 <img
                   src={image}
                   alt={title}
-                  className="h-64 w-full md:h-48 md:w-48 rounded-sm object-cover"
+                  className="h-64 w-full md:h-48 md:w-48 rounded-md object-cover"
                 />
                 <div>
                   <h2 className="text-xl font-semibold capitalize">{title}</h2>
