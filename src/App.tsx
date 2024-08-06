@@ -12,12 +12,14 @@ import {
   Orders,
 } from "./pages";
 
-import { useAppSelector } from "./hooks";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorElement from "./components/ErrorElement";
 import { loader as landingLoader } from "./pages/Landing";
 import { loader as productsLoader } from "./pages/Products";
 import { loader as singleProductLoader } from "./pages/SingleProduct";
+
+// actions
+import { action as registerUser } from "./pages/Register";
 
 const router = createBrowserRouter([
   {
@@ -67,13 +69,15 @@ const router = createBrowserRouter([
     ],
   },
   { path: "/login", element: <Login />, errorElement: <Error /> },
-  { path: "/register", element: <Register />, errorElement: <Error /> },
+  {
+    path: "/register",
+    element: <Register />,
+    errorElement: <Error />,
+    action: registerUser,
+  },
 ]);
 
 function App() {
-  const { name } = useAppSelector((state) => state.userState);
-  console.log(name);
-
   return <RouterProvider router={router}></RouterProvider>;
 }
 export default App;
